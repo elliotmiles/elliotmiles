@@ -11,6 +11,9 @@ I am currently working on a robotic arm I'm designing and programming from scrat
 
 The goal of the project is to sort mixed up items. I plan to experiment with different types of end effector to achieve the best grip, and optimising the AI model.
 
+
+The latest updates can be found [here](blog)
+
 <!--
 **elliotmiles/elliotmiles** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
