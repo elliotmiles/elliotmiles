@@ -14,6 +14,9 @@ The goal of the project is to sort mixed up items. I plan to experiment with dif
 
 The latest updates can be found [here](https://github.com/elliotmiles/Robotic-Arm-v2/tree/main/blog).
 
+![Card detection demo](https://github.com/user-attachments/assets/30257688-10ff-4076-af0a-5d805e5ef085)
+
+
 <!--
 **elliotmiles/elliotmiles** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
