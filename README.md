@@ -4,8 +4,10 @@ I am an aspiring robotics engineer specialising in computer vision and deep lear
 ## Robotic Arm
 I am currently working on a robotic arm I'm designing and programming from scratch, featuring:
 - 4 degrees of freedom
-- inverse kinematics
+- homing switches
+- inverse kinematics & coordinate transform
 - stepper motor control with arduino
+- I2C control of a vacuum suction cup pump
 - real-time object tracking with a webcam using openCV
 - custom deep learning datasets using PyTorch
 
