@@ -1,8 +1,15 @@
 # About me
 I am an aspiring robotics engineer specialising in computer vision and deep learning. I am especially passionate about automation.
 
-## Robotic Arm
-I am currently working on a robotic arm I'm designing and programming from scratch, featuring:
+## SLAM vehicle
+I am currently developing a SLAM vehicle featuring:
+- a Jetson orin nano
+- LiDAR sensing
+- Sensor fusion
+- Custom powerboard/PCB design
+
+## Robot Arm
+My robot arm project features:
 - 4 degrees of freedom
 - homing switches
 - inverse kinematics & coordinate transform
@@ -12,7 +19,6 @@ I am currently working on a robotic arm I'm designing and programming from scrat
 - custom deep learning datasets using PyTorch
 
 The goal of the project is to sort mixed up items. I plan to experiment with different types of end effector to achieve the best grip, and optimising the AI model.
-
 
 The latest updates can be found [here](https://github.com/elliotmiles/Robotic-Arm-v2/tree/main/blog).
 
