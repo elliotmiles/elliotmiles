@@ -1,14 +1,14 @@
 # About me
 I am an aspiring robotics engineer specialising in computer vision and deep learning. I am especially passionate about automation.
 
-## SLAM vehicle
+## [SLAM vehicle](https://github.com/elliotmiles/jetson-slam-vehicle)
 I am currently developing a SLAM vehicle featuring:
 - a Jetson orin nano
 - LiDAR sensing
 - Sensor fusion
 - Custom powerboard/PCB design
 
-## Robot Arm
+## Robot Arm - [original](https://github.com/elliotmiles/yolo-robot-arm) | [ROS2 version](https://github.com/elliotmiles/yolo-robot-arm-ros2)
 My robot arm project features:
 - 4 degrees of freedom
 - homing switches
@@ -20,7 +20,7 @@ My robot arm project features:
 
 The goal of the project is to sort mixed up items. I plan to experiment with different types of end effector to achieve the best grip, and optimising the AI model.
 
-The latest updates can be found [here](https://github.com/elliotmiles/Robotic-Arm-v2/tree/main/blog).
+The blog can be found [here](https://github.com/elliotmiles/yolo-robot-arm/tree/main/blog).
 
 ![Card Pickup Demo](https://github.com/user-attachments/assets/97e45010-18fc-4f9d-b567-9000122c7a8d)
 
