@@ -3,20 +3,20 @@ I am an aspiring robotics engineer specialising in computer vision and deep lear
 
 ## [SLAM vehicle](https://github.com/elliotmiles/jetson-slam-vehicle)
 I am currently developing a SLAM vehicle featuring:
-- a Jetson orin nano
+- A Jetson Orin Nano
 - LiDAR sensing
 - Sensor fusion
 - Custom powerboard/PCB design
 
-## Robot Arm - [original](https://github.com/elliotmiles/yolo-robot-arm) | [ROS2 version](https://github.com/elliotmiles/yolo-robot-arm-ros2)
+## Robot Arm - [Original](https://github.com/elliotmiles/yolo-robot-arm) | [ROS2 version](https://github.com/elliotmiles/yolo-robot-arm-ros2)
 My robot arm project features:
 - 4 degrees of freedom
-- homing switches
-- inverse kinematics & coordinate transform
-- stepper motor control with arduino
+- Homing switches
+- Inverse kinematics & coordinate transform
+- Stepper motor control with arduino
 - I2C control of a vacuum suction cup pump
-- real-time object tracking with a webcam using openCV
-- custom deep learning datasets using PyTorch
+- Real-time object tracking with a webcam using openCV
+- Custom deep learning datasets using PyTorch
 
 The goal of the project is to sort mixed up items. I plan to experiment with different types of end effector to achieve the best grip, and optimising the AI model.
 
