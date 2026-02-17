@@ -22,8 +22,7 @@ The goal of the project is to sort mixed up items. I plan to experiment with dif
 
 The blog can be found [here](https://github.com/elliotmiles/yolo-robot-arm/tree/main/blog).
 
-![Card Pickup Demo]
-(https://github.com/user-attachments/assets/97e45010-18fc-4f9d-b567-9000122c7a8d)
+![Card Pickup Demo](https://github.com/user-attachments/assets/97e45010-18fc-4f9d-b567-9000122c7a8d)
 
 ![Homing Demo](https://github.com/user-attachments/assets/259157cc-3188-4635-b337-b8833ed48270)
 
