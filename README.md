@@ -6,7 +6,7 @@ I am currently developing a SLAM vehicle featuring:
 - A Jetson Orin Nano
 - LiDAR sensing
 - Sensor fusion
-- Custom powerboard/PCB design
+- Custom PCB design
 
 ## Robot Arm - [ROS2 version](https://github.com/elliotmiles/yolo-robot-arm-ros2)
 My robot arm project features:
