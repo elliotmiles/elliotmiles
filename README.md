@@ -1,7 +1,7 @@
 # About me
 I am an aspiring robotics engineer specialising in computer vision and deep learning. I am especially passionate about automation.
 
-## [SLAM vehicle](https://github.com/elliotmiles/jetson-slam-vehicle)
+## [SLAM vehicle](https://github.com/elliotmiles/wheely-dan)
 I am currently developing a SLAM vehicle featuring:
 - A Jetson Orin Nano
 - LiDAR sensing
