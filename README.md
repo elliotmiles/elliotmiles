@@ -7,6 +7,7 @@ I am currently developing a SLAM vehicle featuring:
 - LiDAR sensing
 - Sensor fusion
 - Custom PCB design
+- A simulation environment
 
 ## Robot Arm - [ROS2 version](https://github.com/elliotmiles/yolo-robot-arm-ros2)
 My robot arm project features:
