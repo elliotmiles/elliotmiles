@@ -9,6 +9,12 @@ I am currently developing a SLAM vehicle featuring:
 - Custom PCB design
 - A simulation environment
 
+
+
+https://github.com/user-attachments/assets/ff838631-8737-4ed9-a1de-2237ba1b8d20
+
+
+
 ## Robot Arm - [ROS2 version](https://github.com/elliotmiles/yolo-robot-arm-ros2)
 My robot arm project features:
 - 4 degrees of freedom
