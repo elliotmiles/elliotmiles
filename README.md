@@ -10,9 +10,7 @@ I am currently developing a SLAM vehicle featuring:
 - A simulation environment
 
 
-
-https://github.com/user-attachments/assets/ff838631-8737-4ed9-a1de-2237ba1b8d20
-
+https://github.com/user-attachments/assets/39cba56e-63e2-4d04-bf50-59e7ea70fac6
 
 
 ## Robot Arm - [ROS2 version](https://github.com/elliotmiles/yolo-robot-arm-ros2)
