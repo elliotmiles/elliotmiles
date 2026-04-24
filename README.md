@@ -1,5 +1,5 @@
 # About me
-I am an aspiring robotics engineer specialising in computer vision and deep learning. I am especially passionate about automation.
+I am a robotics engineer specialising in perception and intelligence, with a strong interest in computer vision and machine learning. I'm starting a degree in Electronic and Information Engineering at Imperial College London from September 2026.
 
 ## [SLAM vehicle](https://github.com/elliotmiles/wheely-dan)
 I am currently developing a SLAM vehicle featuring:
