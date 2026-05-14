@@ -3,12 +3,15 @@ I am a robotics engineer specialising in perception and intelligence, with a str
 
 ## [SLAM vehicle](https://github.com/elliotmiles/wheely-dan)
 I am currently developing a SLAM vehicle featuring:
-- A Jetson Orin Nano
-- LiDAR sensing
+- Depth camera & LiDAR scanning for 3D mapping using rtabmap
+- Jetson Orin Nano for onboard compute
 - Sensor fusion
 - Custom PCB design
-- A simulation environment
+- A simulation environment in gazebo
 
+The goal is to autonomously map a room in 3D and I plan to experiment with exploration algorithms for efficiency.
+
+The blog can be found [here](https://github.com/elliotmiles/wheely-dan/blob/main/blog.md).
 
 https://github.com/user-attachments/assets/39cba56e-63e2-4d04-bf50-59e7ea70fac6
 
