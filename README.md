@@ -28,7 +28,7 @@ My robot arm project features:
 
 The goal of the project is to sort mixed up items. I plan to experiment with different types of end effector to achieve the best grip, and optimising the AI model.
 
-The blog can be found [here](https://github.com/elliotmiles/yolo-robot-arm/tree/main/blog).
+The blog can be found [here](https://github.com/elliotmiles/autodealer/blob/main/blog.md).
 
 ![Card Pickup Demo](https://github.com/user-attachments/assets/97e45010-18fc-4f9d-b567-9000122c7a8d)
 
