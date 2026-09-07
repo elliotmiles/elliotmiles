@@ -14,7 +14,7 @@ The goal is to autonomously map a room in 3D and I plan to experiment with explo
 The blog can be found [here](https://github.com/elliotmiles/wheely-dan/blob/main/blog.md).
 
 ### Demos:
-Full Demo - https://youtu.be/DSD8cMYinJs
+Full Demo - [https://youtu.be/DSD8cMYinJs](https://www.youtube.com/watch?v=GWcB8SoaJv8)
 
 https://github.com/user-attachments/assets/7e3f203c-1132-4056-aa0b-0d33ed2588a4
 
