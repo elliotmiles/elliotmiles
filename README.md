@@ -1,7 +1,7 @@
 # About me
 I am a robotics engineer specialising in perception and intelligence, with a strong interest in computer vision and machine learning. I'm starting a degree in Electronic and Information Engineering at Imperial College London in September 2026.
 
-## [SLAM vehicle](https://github.com/elliotmiles/wheely-dan)
+## SLAM Mapping Vehicle
 I am currently developing a SLAM vehicle featuring:
 - Depth camera & LiDAR scanning for 3D mapping using rtabmap
 - Jetson Orin Nano for onboard compute
@@ -11,7 +11,7 @@ I am currently developing a SLAM vehicle featuring:
 
 The goal is to autonomously map a room in 3D and I plan to experiment with exploration algorithms for efficiency.
 
-The blog can be found [here](https://github.com/elliotmiles/wheely-dan/blob/main/blog.md).
+The blog can be found [here](https://github.com/elliotmiles/elliotmiles/blob/main/slam-vehicle-blog.md).
 
 ### Demos:
 Full Demo - [https://youtu.be/DSD8cMYinJs](https://www.youtube.com/watch?v=GWcB8SoaJv8)
@@ -24,7 +24,7 @@ https://github.com/user-attachments/assets/7e3f203c-1132-4056-aa0b-0d33ed2588a4
 
 https://github.com/user-attachments/assets/39cba56e-63e2-4d04-bf50-59e7ea70fac6
 
-## Robot Arm - [ROS2 version](https://github.com/elliotmiles/yolo-robot-arm-ros2)
+## Robot Arm
 My robot arm project features:
 - 4 degrees of freedom
 - Homing switches
@@ -34,9 +34,9 @@ My robot arm project features:
 - Real-time object tracking with a webcam using openCV
 - Custom deep learning datasets using PyTorch
 
-The goal of the project is to sort mixed up items. I plan to experiment with different types of end effector to achieve the best grip, and optimising the AI model.
+The goal of the project is to sort mixed up items. I plan to experiment with different types of end effector to achieve the best grip, and optimising the AI model. I actually rewrote all the code in ROS2 to give a clean interface to work with and more organised communication.
 
-The blog can be found [here](https://github.com/elliotmiles/autodealer/blob/main/blog.md).
+The blog can be found [here](https://github.com/elliotmiles/elliotmiles/blob/main/robot-arm-blog.md).
 
 ![Card Pickup Demo](https://github.com/user-attachments/assets/97e45010-18fc-4f9d-b567-9000122c7a8d)
 
@@ -45,17 +45,3 @@ The blog can be found [here](https://github.com/elliotmiles/autodealer/blob/main
 ![Card detection demo](https://github.com/user-attachments/assets/30257688-10ff-4076-af0a-5d805e5ef085)
 
 
-<!--
-**elliotmiles/elliotmiles** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-
-
--->
