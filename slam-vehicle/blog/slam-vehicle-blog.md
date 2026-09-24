@@ -4,16 +4,16 @@ What's especially useful in a mapping robot is a way to communicate its surround
 
 The Common Objects in Context (COCO) dataset is perfect for this application, and in the previous blog post I covered the inference using a pre-trained YOLO model. Once the depth camera has detected the objects in its RGB frame, it cross-references the corresponding depth frame to project the object's location in 3D, and publishes that as a marker. Here's a screenshot showing the implementation of it:
 
-<img width="1853" height="1047" alt="Screenshot from 2026-06-11 14-54-02" src="https://github.com/user-attachments/assets/b0d3eb2f-1dc6-4e24-974c-839efa33ea3a" />
+<img width="1853" height="1047" alt="Screenshot from 2026-06-11 14-54-02" src="./media/semantic-mapping2.png" />
 
 I realised that I wasn't actually publishing the class labels for the markers, so I added the text just above to marker spheres (screenshot shown below). Now, one of the labels shows "airplane", which is clearly wrong because there is no aeroplane (or image of an aeroplane) in this room. I may try to use one of the heavier models and see if that improves the accuracy. In the previous blog post you can see the screenshot from Ultralytics' website showing the performance of different YOLO26 variants. YOLO26s supposedly has a mAP 19% higher than YOLO26n, which suggests a significant increase in performance, however inference takes almost 50% longer. This will require figuring out how to get extra performance out of the Jetson.
 
-<img width="1853" height="1047" alt="Screenshot from 2026-06-11 15-50-46" src="https://github.com/user-attachments/assets/f9b9254d-31e1-4cc1-9b13-8f03af669e86" />
+<img width="1853" height="1047" alt="Screenshot from 2026-06-11 15-50-46" src="./media/semantic-mapping1.png" />
 
 # 02/06/2026 - YOLO inference
 
 I wrote a node to test running YOLO inference on the depth camera stream that doesn't publish anything back to ROS, just to test the performance. I was right to do this first, as I discovered I was only getting 2 FPS (I forgot to take a screenshot of this). This was concerning because not only should the Jetson be performing better than this, but also I was running the most lightweight COCO submodel, namely YOLO26n from the screenshot below. 
-<img width="927" height="433" alt="image" src="https://github.com/user-attachments/assets/1da1055a-c8d5-42de-b798-8b89af5c91fe" />
+<img width="927" height="433" alt="image" src="./media/coco.png" />
 
 The issue was uncovered when I tried `print(torch.cuda.get_device_name(0))` in python and it threw an error. This means the onboard GPU was not being utilised. I had to reinstall PyTorch using a specific `aarch64 jetson` wheel from the Jetson AI Lab. This also required me to find out how to install cuSPARSELt and libcudss as they were key dependencies. This is a key tradeoff I'm noticing with edge AI applications, where you often have to find custom wheels for the more efficient and divergent architecture. 
 
@@ -28,11 +28,11 @@ Just sending PWM signals to the motors with no feedback technically does work, h
 
 The datasheet for my motors provides a wiring diagram, as seen below.
 
-<img width="957" height="384" alt="Screenshot from 2026-05-05 23-14-07" src="https://github.com/user-attachments/assets/42122a03-1f11-4960-8ac4-50cdefc9d982" />
+<img width="957" height="384" alt="Screenshot from 2026-05-05 23-14-07" src="./media/motor-pinout.png" />
 
 Running the Encoder Count Test program from PJRC allowed me to test the encoders by turning the wheels by hand and using the serial monitor to see the encoder count tick up. However I discovered that when turning both wheels forwards, the left wheel was adding negative counts. To fix this I simply reversed Hall A and Hall B when creating the Encoder object. 
 
-<img width="1799" height="982" alt="image" src="https://github.com/user-attachments/assets/ce3879b0-4c98-4f4d-965d-d495cb174408" />
+<img width="1799" height="982" alt="image" src="./media/teensy-program.png" />
 
 
 First, on the Jetson I wrote a ROS2 node in python that:
@@ -43,7 +43,7 @@ However before just sending raw `/cmd_vel` data to the Teensy, it must be parsed
 
 The Teensy sends the position and velocity of each wheel, which the Jetson then uses to calculate the wheel odometry. I sketched a diagram to show how this is calculated:
 
-<img width="560" height="576" alt="image" src="https://github.com/user-attachments/assets/69add731-5b87-4b4f-9f38-aa38f9d3a19a" />
+<img width="560" height="576" alt="image" src="./media/diff-drive2.png" />
 
 > - The purple cross represents the global origin
 > - The green path represents the path of `base_link`
@@ -62,7 +62,7 @@ $$
 $$
 
 
-<img width="990" height="416" alt="Screenshot from 2026-05-13 21-10-37" src="https://github.com/user-attachments/assets/786398bc-e353-43be-bffa-7464bfd88160" />
+<img width="990" height="416" alt="Screenshot from 2026-05-13 21-10-37" src="./media/diff-drive1.png" />
 
 I also needed to write the control loop on the Teensy. With `#include <Encoders.h>` I can instantiate encoders, then use the `.read()` function instead of dealing with interrupts in the code. 
 
@@ -73,7 +73,7 @@ I also needed to write the control loop on the Teensy. With `#include <Encoders.
 
 I needed a way for the Jetson and Teensy 4.1 to communicate, so I began by routing a cable from the grove header I'd put on the PCB for this purpose to the UART pins on the Jetson's expansion header. I then wrote basic programs on the Jetson and the teensy to try and echo some text back to the Jetson, however when I observed the results in miniterm I saw it had become corrupted.
 
-<img width="1167" height="386" alt="Screenshot from 2026-05-05 20-34-19" src="https://github.com/user-attachments/assets/6dafbfad-1c4d-457f-9a24-9bf3f0c4c3c2" />
+<img width="1167" height="386" alt="Screenshot from 2026-05-05 20-34-19" src="./media/comms-corruption.png" />
 
 I highly suspect this was to do with a loose connection with the jumper wires, and I wanted the connection to be as robust as possible, so I decided to change to a serial connection over USB instead. Immediately the results improved and the data was no longer corrupted.
 
@@ -82,11 +82,11 @@ I highly suspect this was to do with a loose connection with the jumper wires, a
 
 I first incorporated a depth camera plugin for gazebo to simulate the Intel Realsense D435 camera I will be using. I then installed rtabmap, which uses the `/camera/image_raw`, `/camera/depth/image_raw` and `/camera/depth/camera_info` topics to produce a `/voxel_cloud` pointcloud2 display. This is then used to create a 3D map as the robot drives around. 
 
-<img width="1857" height="1005" alt="Screenshot from 2026-05-24 17-34-25" src="https://github.com/user-attachments/assets/db9f656a-dc26-4e20-b559-f5b3b790c930" />
+<img width="1857" height="1005" alt="Screenshot from 2026-05-24 17-34-25" src="./media/rtabmap3.jpeg" />
 
-<img width="1857" height="1004" alt="Screenshot from 2026-05-24 17-34-51" src="https://github.com/user-attachments/assets/a4f8c078-db4f-4c4c-be11-e0cb4227fc00" />
+<img width="1857" height="1004" alt="Screenshot from 2026-05-24 17-34-51" src="./media/rtabmap2.jpeg" />
 
-<img width="1857" height="1049" alt="Screenshot from 2026-05-24 17-38-50" src="https://github.com/user-attachments/assets/d4c10186-5574-4a93-854d-0840076d8f56" />
+<img width="1857" height="1049" alt="Screenshot from 2026-05-24 17-38-50" src="./media/rtabmap1.png" />
 
 I plan to get this working on the real robot with the depth camera, then implement semantic mapping by running each RGB frame through a YOLO model to detect common objects, and cross referencing the corresponding depth frame to place the detection in the 3D map. This is beneficial for two reasons:
 - It allows the map data to be more meaningful than just categorising empty space and occupied space
@@ -109,7 +109,7 @@ I used the online asynchronous mode, meaning:
 
 I initially tried to run `ros2 launch slam_toolbox online_async_launch.py use_sim_time:=true params_file:=./src/wd_navigation/config/mapper_params_online_async.yaml`
 which resulted in an error:
-<img width="813" height="127" alt="Screenshot from 2026-04-18 19-17-05" src="https://github.com/user-attachments/assets/09ac8f3d-93fe-4db2-bbfc-328a4b88995f" />
+<img width="813" height="127" alt="Screenshot from 2026-04-18 19-17-05" src="./media/odom-debug.png" />
 
 Apparently that command is for an older version of ROS2 and now the correct command is `ros2 launch slam_toolbox online_async_launch.py use_sim_time:=true slam_params_file:=./src/wd_navigation/config/mapper_params_online_async.yaml
 ` which yielded the correct results. 
@@ -130,12 +130,12 @@ I implemented optional ros2_control functionality onto the robot. This loads two
 - **diff_cont**, which gets the wheel velocities to be sent to the hardware interface
 - **joint_broad**, which reads the motor encoder data and publishes this to /joint_states (which is then used by robot state publisher)
 
-<img width="565" height="643" alt="Screenshot from 2026-06-02 19-57-39" src="https://github.com/user-attachments/assets/53dfcef4-9ed9-40cc-a791-a970e59d77af" />
+<img width="565" height="643" alt="Screenshot from 2026-06-02 19-57-39" src="./media/ros2-control-diagram.png" />
 
 To make things organised, I created a new package called `wd_control`, and added `ros2_control.xacro` and `controllers.yaml`.
 
 I then ran into a bug with inconsistent message types.
-<img width="805" height="134" alt="Screenshot from 2026-04-16 14-28-47" src="https://github.com/user-attachments/assets/c09b1ef5-ed0b-4322-9dd4-d3d621351c63" />
+<img width="805" height="134" alt="Screenshot from 2026-04-16 14-28-47" src="./media/controller-test.png" />
 
 For mentions of `/cmd_vel`, my source code was inconsistent across files with using `Twist` or `TwistStamped` as the message type. 
 
@@ -150,7 +150,7 @@ I am using the RPLIDAR A1 for my robot. From what I've observed, it has good ran
 To test the module, I routed the three motor cables (which will eventually end up on the main PCB) to my bench power supply, and the four UART cables to the adapter board that came with the lidar module. 
 I then connected the Jetson via USB and used ssh to enter it via my desktop PC. My desktop is on ROS2 Jazzy, whereas the Jetson is on Humble and I was worried this may cause issues however it turned out to be fine.
 
-<img width="1920" height="1440" alt="image" src="https://github.com/user-attachments/assets/3a78bdaa-8ffb-4c87-b619-ac9c66cdbd26" />
+<img width="1920" height="1440" alt="image" src="./media/lidar-test2.png" />
 
 The RPLIDAR SDK is on slamtec's github page [here](https://github.com/Slamtec/rplidar_ros), however this is for ROS1 and is outdated. Instead I ran `sudo apt install ros-jazzy-rplidar-ros` to install the ROS2 package. 
 
@@ -160,28 +160,28 @@ ros2 run rplidar_ros rplidar_composition   --ros-args   -p serial_port:=/dev/tty
 ```
 Below you can see an image of the result visualised in rviz2.
 
-<img width="1848" height="1037" alt="Screenshot from 2026-03-27 17-47-09" src="https://github.com/user-attachments/assets/f667c942-8fea-4d80-9fe6-38c7454f17e3" />
+<img width="1848" height="1037" alt="Screenshot from 2026-03-27 17-47-09" src="./media/lidar-test1.png" />
 
 The pointcloud data provides a map of the surroundings.
 
 # 26/03/2026 - Gazebo Simulation
 
 First I loaded the barebones URDF model into gazebo, with only `<visual>` tags, to check the .stl files were loading correctly.  
-<img width="619" height="633" alt="Screenshot from 2026-03-18 21-56-00" src="https://github.com/user-attachments/assets/a9f6deda-b31c-48db-968c-e41ed4d23088" />
+<img width="619" height="633" alt="Screenshot from 2026-03-18 21-56-00" src="./media/gz-debug2.png" />
 
 Next I added the `<collision>` and `<inertial>` tags (see the URDF blog post), and added the `gz::sim::systems::DiffDrive` plugin, which allows manual teleoperation. To begin with I used `teleop_twist_keyboard` to publish to `/cmd_vel`. 
 
 I immediately ran into an issue: the robot was able to move forwards and backwards, but not able to turn. From this image you can see `angular { z: 1 }` meaning `/cmd_vel` was correct, so the robot was trying to turn. 
-<img width="1748" height="934" alt="Screenshot from 2026-03-24 11-39-42" src="https://github.com/user-attachments/assets/52d2353c-f70e-4974-834f-63534406409d" />
+<img width="1748" height="934" alt="Screenshot from 2026-03-24 11-39-42" src="./media/gz-debug.png" />
 I first thought it was to do with traction, then I thought it was to do with inertia. 
 Turns out it was because having cylinders as the collision geometry for wheels messes with gazebo, and my caster wheels' collision geometry were cylinders. So I changed the caster wheels' collision geometry to spheres, which fixed the bug.
 
 Once I had the robot driving, I then tried adding the lidar sensor. However I had another bug - the /scan topic was not appearing in the "Visualize lidar" section in gazebo. 
-<img width="1831" height="1036" alt="Screenshot from 2026-03-25 18-35-11" src="https://github.com/user-attachments/assets/3e561111-cd42-4032-a76f-7d7c84c383b3" />
+<img width="1831" height="1036" alt="Screenshot from 2026-03-25 18-35-11" src="./media/3d-model-gz1.png" />
 Turns out this was because I hadn't correctly included the `gz::sim::systems::Sensors` plugin. 
 
 Once I'd fixed that, I could visualise the lidar scanner in gazebo. This publishes to the `/scan` topic, which is of type `/sensor_msgs/msg/LaserScan`. 
-<img width="1850" height="1046" alt="image" src="https://github.com/user-attachments/assets/bb983810-5075-45c8-8a83-0ca39c754dee" />
+<img width="1850" height="1046" alt="image" src="./media/lidar-test.png" />
 
 I then made a quick custom world using some basic primitives to show rviz2 displaying `/scan` and `/robot_description` in `odom`.
 
@@ -323,10 +323,10 @@ This design has multiple benefits:
 
 I also added a fan on the bottom layer for extra cooling, since high current can cause heating. 
 
-<img width="1041" height="732" alt="design" src="https://github.com/user-attachments/assets/c3e2bd23-528e-43db-8d54-1741f8347b69" />
-<img width="1920" height="1080" alt="render1" src="https://github.com/user-attachments/assets/9583541d-e8e8-4825-b6da-de9093015cf8" />
-<img width="1920" height="1080" alt="render2" src="https://github.com/user-attachments/assets/43138677-e76d-405c-826b-14036573b97e" />
-<img width="1920" height="1080" alt="render3" src="https://github.com/user-attachments/assets/05909c98-569e-4c87-887c-3407384478c5" />
+<img width="1041" height="732" alt="design" src="./media/3d-diagram.png" />
+<img width="1920" height="1080" alt="render1" src="./media/cad3.png" />
+<img width="1920" height="1080" alt="render2" src="./media/cad2.png" />
+<img width="1920" height="1080" alt="render3" src="./media/cad1.png" />
 
 The next step will be to export parts as .stl files and then write a URDF file that joins them together and assigns properties such as mass. This will allow me to simulate the robot in Gazebo.  
 
@@ -336,21 +336,21 @@ The next step will be to export parts as .stl files and then write a URDF file t
 After realising grove headers would be unncessary for the LiDAR and motor encoder connections, I switched to using screw terminals for those connections instead. I edited the schematic so that now some terminals require through-hole pads for screw terminals, with the rest requiring SMD pads for grove headers. 
 
 Here is the updated schematic:
-<img width="1117" height="851" alt="image" src="https://github.com/user-attachments/assets/dac2bb4a-b067-4731-a63d-7f89b9292e92" />
+<img width="1117" height="851" alt="image" src="./media/schematic2.png" />
 
 
 ## PCB layout
 I opted to go with a two-layer PCB simply because the board is not very large and so two layers is sufficient. 
 
-<img width="891" height="735" alt="image" src="https://github.com/user-attachments/assets/c8032f1b-8b7a-46d0-a2ac-e43aef461e11" />
+<img width="891" height="735" alt="image" src="./media/pcb-traces.png" />
 
 I then found the appropriate .step files online and assigned those to each footprint to ensure there were no collisions. I also wanted to keep the design relatively compact.
 
-<img width="910" height="770" alt="image" src="https://github.com/user-attachments/assets/d6fb3106-20f9-49b7-beca-1ef0abab50d2" />
+<img width="910" height="770" alt="image" src="./media/pcb-3d.png" />
 
 I decided to get 5 identical PCBs just in case anything went wrong. The PCBs arrived a couple of weeks after ordering from JLCPCB, and I immediately got to soldering. Below you can see a bare PCB next to a fully assembled one.
 
-<img width="1920" height="1440" alt="image" src="https://github.com/user-attachments/assets/21dbeb39-ddf5-4daf-8628-a4edc9eb5de3" />
+<img width="1920" height="1440" alt="image" src="./media/pcbs.png" />
 
 # 05/03/2026 - Schematic Design
 
