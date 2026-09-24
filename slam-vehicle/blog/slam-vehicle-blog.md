@@ -116,10 +116,7 @@ Apparently that command is for an older version of ROS2 and now the correct comm
 
 The robot can now generate a map of the environment around it and locate itself within that map. The limitation of slam_toolbox is that it only generates a 2D map (at the height of the lidar scanner), which leaves it susceptible to objects blocking its path that may be lower down. 2D scanning is still acceptable for navigation of less cluttered environments such as (most) homes, and warehouses. Robots that operate in more complex environments such as outdoors tend to use sensors such as depth cameras or 3D lidar scanners to generate a 3D map of the environment. Therefore I plan to add a forward-facing depth camera to the object to generate a more sophisticated map.
 
-https://github.com/user-attachments/assets/aeaf4adf-0821-4af0-9df3-b328802047cf
-
-
-
+https://github.com/user-attachments/assets/b4650bbf-e342-48f3-a4e6-997465e95b0c
 
 
 # 15/04/2026 - ros2_control
@@ -186,7 +183,11 @@ Once I'd fixed that, I could visualise the lidar scanner in gazebo. This publish
 I then made a quick custom world using some basic primitives to show rviz2 displaying `/scan` and `/robot_description` in `odom`.
 
 
-https://github.com/user-attachments/assets/ce577a56-6b6a-4da5-9a92-93284e13d900
+
+
+https://github.com/user-attachments/assets/9a9845bb-2364-410a-8b63-55eea3692b85
+
+
 
 
 # 23/03/2026 - Jetson Setup
