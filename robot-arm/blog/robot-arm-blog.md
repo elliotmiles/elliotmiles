@@ -32,7 +32,7 @@ The card detection is complete.
 
 - I wrote a python program to detect the cards in real time, and also combined the Aruco marker detection; a demo is shown below:
 
-https://github.com/user-attachments/assets/abf8410f-be76-4347-8a52-7dc9d73a1910
+https://github.com/user-attachments/assets/7dcee5a4-68bd-4ffd-b935-b0bce6134944
 
 # 19/09/2025 - Suction pipeline
 
