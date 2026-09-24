@@ -14,7 +14,7 @@ I am currently developing a SLAM vehicle featuring:
 
 The goal is to autonomously map a room in 3D and I plan to experiment with exploration algorithms for efficiency.
 
-The blog can be found [here](https://github.com/elliotmiles/elliotmiles/blob/main/slam-vehicle-blog.md).
+The blog can be found [here](https://github.com/elliotmiles/elliotmiles/blob/main/slam-vehicle/blog/slam-vehicle-blog.md).
 
 ### Demos:
 Full Demo - [https://youtu.be/DSD8cMYinJs](https://www.youtube.com/watch?v=GWcB8SoaJv8)
