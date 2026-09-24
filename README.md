@@ -1,6 +1,9 @@
 # About me
 I am a robotics engineer specialising in perception and intelligence, with a strong interest in computer vision and machine learning. I'm starting a degree in Electronic and Information Engineering at Imperial College London in September 2026.
 
+## Latest project - Exploration Algorithm
+[Read all about it here!](https://github.com/elliotmiles/explorer)
+
 ## SLAM Mapping Vehicle
 I am currently developing a SLAM vehicle featuring:
 - Depth camera & LiDAR scanning for 3D mapping using rtabmap
