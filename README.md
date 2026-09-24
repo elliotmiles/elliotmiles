@@ -35,7 +35,7 @@ My robot arm project features:
 
 The goal of the project is to sort mixed up items. I plan to experiment with different types of end effector to achieve the best grip, and optimising the AI model. I actually rewrote all the code in ROS2 to give a clean interface to work with and more organised communication.
 
-The blog can be found [here](https://github.com/elliotmiles/elliotmiles/blob/main/robot-arm-blog.md).
+The blog can be found [here](https://github.com/elliotmiles/elliotmiles/blob/main/robot-arm/blog/robot-arm-blog.md).
 
 ![Card Pickup Demo](https://github.com/user-attachments/assets/97e45010-18fc-4f9d-b567-9000122c7a8d)
 
